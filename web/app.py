@@ -4,30 +4,39 @@ from flask import request
 from flask import render_template
 from flask import redirect
 from flask import url_for
+from pymongo import MongoClient
+from bson import ObjectId
 
 app = Flask(__name__)
 
-data =[]
+client = MongoClient("mongodb://mongo:27017/")
+mydb = client["ipa2025"]
+mycol = mydb["routers"]
+
+data = list(mycol.find({})).copy()
 
 @app.route("/")
 def main():
+    data = list(mycol.find({})).copy()
     return render_template("index.html", data=data)
 
 @app.route("/add", methods=["POST"])
 def add_router():
-    yourname = request.form.get("yourname")
-    message = request.form.get("message")
+    router_ipaddr = request.form.get("router_ipaddr")
+    username = request.form.get("username")
+    password = request.form.get("password")
 
-    if yourname and message:
-        data.append({"yourname": yourname, "message": message})
+    if router_ipaddr and username and password:
+        router_info = {"router_ipaddr": router_ipaddr, "username": username, "password": password}
+        mycol.insert_one(router_info)
     return redirect("/")
 
 @app.route("/delete", methods=['POST'])
 def delete_comment():
+    id = request.form.get("_id")
     try:
-        idx = int(request.form.get("idx"))
-        if 0 <= idx < len(data):
-            data.pop(idx)
+        print(f"Del: {id}")
+        mycol.delete_one({"_id": ObjectId(id)})
     except Exception:
         pass
     return redirect(url_for("main"))
