@@ -13,12 +13,10 @@ client = MongoClient("mongodb://mongo:27017/")
 mydb = client["ipa2025"]
 mycol = mydb["routers"]
 
-data = list(mycol.find({})).copy()
 
 @app.route("/")
 def main():
-    data = list(mycol.find({})).copy()
-    return render_template("index.html", data=data)
+    return render_template("index.html", data=mycol.find())
 
 @app.route("/add", methods=["POST"])
 def add_router():
@@ -32,7 +30,7 @@ def add_router():
     return redirect("/")
 
 @app.route("/delete", methods=['POST'])
-def delete_comment():
+def delete_router():
     id = request.form.get("_id")
     try:
         print(f"Del: {id}")
