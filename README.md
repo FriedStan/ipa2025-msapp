@@ -1,1 +1,1 @@
-# ipa2025-msapp [Docker]
+# ipa2025-msapp
