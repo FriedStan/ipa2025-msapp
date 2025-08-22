@@ -13,6 +13,7 @@ db_name    = os.environ.get("DB_NAME")
 client = MongoClient(mongo_uri)
 mydb = client[db_name]
 mycol = mydb["routers"]
+info = mydb["interface_status"]
 
 
 @app.route("/")
@@ -39,6 +40,10 @@ def delete_router():
     except Exception:
         pass
     return redirect(url_for("main"))
+
+@app.route("/router/<string:ip>")
+def show_interfaces(ip):
+    return render_template("show_interface.html", data=info.find({"router_ip": ip}))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

@@ -3,3 +3,9 @@
     font-family: "Google Sans Code", monospace;
 }
 body {background: lightsteelblue;}
+
+
+table, th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
