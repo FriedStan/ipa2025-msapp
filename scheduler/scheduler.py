@@ -1,6 +1,5 @@
 """Scheduler"""
 import time
-import pika
 import os
 
 from producer import produce
