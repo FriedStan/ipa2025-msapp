@@ -44,6 +44,6 @@ jobs:
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/scheduler:latest ./scheduler
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/web:latest ./web
 
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}ing/worker:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/worker:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/scheduler:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
