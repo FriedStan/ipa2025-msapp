@@ -48,7 +48,8 @@ def delete_router():
 
 @APP.route("/router/<string:ip>")
 def show_interfaces(ip):
-    return render_template("show_interface.html", data=INFO.find({"router_ip": ip}))
+    return render_template("show_interface.html",
+                           data=INFO.find({"router_ip": ip}))
 
 
 if __name__ == "__main__":
