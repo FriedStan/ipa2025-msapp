@@ -1,10 +1,10 @@
 from netmiko import ConnectHandler
 
 DEVICE_PARAMS = {
-    'device_type': 'cisco_ios',
-    'ip': None,
-    'username': None,
-    'password': None,
+    "device_type": "cisco_ios",
+    "ip": None,
+    "username": None,
+    "password": None,
 }
 
 

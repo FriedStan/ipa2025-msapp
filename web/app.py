@@ -1,4 +1,5 @@
 """Flask App"""
+
 import os
 
 from flask import Flask, request, render_template, redirect, url_for
@@ -29,13 +30,16 @@ def add_router():
     password = request.form.get("password")
 
     if router_ipaddr and username and password:
-        router_info = {"router_ipaddr": router_ipaddr,
-                       "username": username, "password": password}
+        router_info = {
+            "router_ipaddr": router_ipaddr,
+            "username": username,
+            "password": password,
+        }
         MYCOL.insert_one(router_info)
     return redirect("/")
 
 
-@APP.route("/delete", methods=['POST'])
+@APP.route("/delete", methods=["POST"])
 def delete_router():
     id = request.form.get("_id")
     try:
@@ -48,8 +52,7 @@ def delete_router():
 
 @APP.route("/router/<string:ip>")
 def show_interfaces(ip):
-    return render_template("show_interface.html",
-                           data=INFO.find({"router_ip": ip}))
+    return render_template("show_interface.html", data=INFO.find({"router_ip": ip}))
 
 
 if __name__ == "__main__":
