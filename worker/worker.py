@@ -8,8 +8,6 @@ rabbitmq = os.environ.get("RABBITMQ_HOST")
 
 credentials=pika.PlainCredentials(rabbitmq_username, rabbitmq_password)
 
-count = 0
-
 def callback(ch, method, properties, body):
     data = json.loads(body.decode())
     interfaces_data = show_interface(data.get("router_ipaddr"), data.get("username"), data.get("password"))
@@ -33,6 +31,15 @@ def consume(host):
     channel.start_consuming()
 
 
-time.sleep(5)
-print(f"Connecting to RabbitMQ (try {count})...")
-consume(rabbitmq)
+if __name__ == "__main__":
+    for attempt in range(10):
+            try:
+                print(f"Connecting to RabbitMQ (try {attempt})...")
+                consume(rabbitmq)
+                break
+            except Exception as e:
+                print(f"Failed: {e}")
+                time.sleep(5)
+    else:
+        print("Could not connect after 10 attempts")
+        exit(1)
