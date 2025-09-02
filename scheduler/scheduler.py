@@ -8,7 +8,6 @@ from bson import json_util
 from database import get_router_info
 
 
-
 def scheduler():
     """Send router info to RabbitMQ"""
     INTERVAL = 10.0
