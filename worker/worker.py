@@ -17,7 +17,7 @@ def callback(ch, method, properties, body):
     print(f"Received job for router {data.get("router_ipaddr")}")
     print(json.dumps(interfaces_data, indent=2))
 
-    insert_interface_status({"router_ip": data.get("router_ipaddr"), "timestamp": "", "interfaces": interfaces_data})
+    #insert_interface_status({"router_ip": data.get("router_ipaddr"), "timestamp": "", "interfaces": interfaces_data})
     
     time.sleep(body.count(b'.'))
     ch.basic_ack(delivery_tag=method.delivery_tag)
