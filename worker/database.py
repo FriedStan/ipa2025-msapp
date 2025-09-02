@@ -1,7 +1,9 @@
-import os, time
+import os
+import time
 from datetime import datetime, timezone
 
 from pymongo import MongoClient
+
 
 def insert_interface_status(data):
     mongo_uri = os.environ.get("MONGO_URI")

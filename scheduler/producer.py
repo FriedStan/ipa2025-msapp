@@ -1,13 +1,15 @@
+"""Producer"""
 import pika, os
 
 
-rabbitmq_username=os.environ.get("RABBITMQ_DEFAULT_USER")
-rabbitmq_password=os.environ.get("RABBITMQ_DEFAULT_PASS")
+RABBITMQ_USERNAME=os.environ.get("RABBITMQ_DEFAULT_USER")
+RABBITMQ_PASSWORD=os.environ.get("RABBITMQ_DEFAULT_PASS")
 
-credentials=pika.PlainCredentials(rabbitmq_username, rabbitmq_password)
+CREDENTIALS=pika.PlainCredentials(RABBITMQ_USERNAME, RABBITMQ_PASSWORD)
 
 def produce(host, body):
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host, credentials=credentials))
+    """Produce work to RabbitMQ"""
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host, credentials=CREDENTIALS))
     channel = connection.channel()
 
     channel.exchange_declare(exchange="jobs", exchange_type="direct")
