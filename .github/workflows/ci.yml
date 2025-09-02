@@ -40,10 +40,10 @@ jobs:
 
       - name: Build & Push Docker Images
         run: |
-          docker build -t kuqing/worker:latest ./worker
-          docker build -t kuqing/scheduler:latest ./scheduler
-          docker build -t kuqing/web:latest ./web
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/worker:latest ./worker
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/scheduler:latest ./scheduler
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/web:latest ./web
 
-          docker push kuqing/worker:latest
-          docker push kuqing/scheduler:latest
-          docker push kuqing/web:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}ing/worker:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/scheduler:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/web:latest
