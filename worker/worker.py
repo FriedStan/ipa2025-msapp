@@ -7,7 +7,6 @@ from database import insert_interface_status
 
 RABBITMQ_USERNAME = os.environ.get("RABBITMQ_DEFAULT_USER")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_DEFAULT_PASS")
-RABBITMQ = os.environ.get("RABBITMQ_HOST")
 
 CREDENTIALS = pika.PlainCredentials(RABBITMQ_USERNAME, RABBITMQ_PASSWORD)
 
@@ -47,7 +46,7 @@ if __name__ == "__main__":
     for attempt in range(10):
         try:
             print(f"Connecting to RabbitMQ (try {attempt})...")
-            consume(RABBITMQ)
+            consume("rabbitmq")
             break
         except Exception as e:
             print(f"Failed: {e}")
