@@ -3,7 +3,8 @@ import os
 import time
 import json
 from workload import show_interface
-#from database import insert_interface_status
+
+# from database import insert_interface_status
 
 RABBITMQ_USERNAME = os.environ.get("RABBITMQ_DEFAULT_USER")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_DEFAULT_PASS")
