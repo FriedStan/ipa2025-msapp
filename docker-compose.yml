@@ -8,7 +8,6 @@ services:
     networks:
       - app-net
     environment:
-      MONGO_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${MONGO_LOCATION}:27017/"
       PYTHONUNBUFFERED: 1
     env_file:
       - .env
@@ -45,7 +44,6 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/"
       PYTHONUNBUFFERED: 1
   
   worker:
@@ -58,7 +56,6 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_URI: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/"
       PYTHONUNBUFFERED: 1
 
 volumes:

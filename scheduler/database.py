@@ -4,10 +4,12 @@ import os
 
 from pymongo import MongoClient
 
-
 def get_router_info():
     """Get router info from DB"""
-    mongo_uri = os.environ.get("MONGO_URI")
+    MONGO_USER = os.environ.get("MONGO_INITDB_ROOT_USERNAME")
+    MONGO_PASSWORD = os.environ.get("MONGO_INITDB_ROOT_PASSWORD")
+    MONGO_LOCATION = os.environ.get("MONGO_LOCATION")
+    mongo_uri = f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_LOCATION}:27017/"
     db_name = os.environ.get("DB_NAME")
 
     client = MongoClient(mongo_uri)

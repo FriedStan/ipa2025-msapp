@@ -4,7 +4,9 @@ import time
 from producer import produce
 from bson import json_util
 from database import get_router_info
+import os
 
+RABBITMQ_LOCATION=os.environ.get("RABBITMQ_LOCATION")
 
 def scheduler():
     """Send router info to RabbitMQ"""
@@ -21,7 +23,7 @@ def scheduler():
         try:
             for data in get_router_info():
                 body_bytes = json_util.dumps(data).encode("utf-8")
-                produce("rabbitmq", body_bytes)
+                produce(RABBITMQ_LOCATION, body_bytes)
         except Exception as e:
             print(e)
             time.sleep(3)
