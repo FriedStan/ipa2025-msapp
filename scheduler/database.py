@@ -4,6 +4,7 @@ import os
 
 from pymongo import MongoClient
 
+
 def get_router_info():
     """Get router info from DB"""
     MONGO_USER = os.environ.get("MONGO_INITDB_ROOT_USERNAME")

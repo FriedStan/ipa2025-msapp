@@ -6,7 +6,8 @@ from bson import json_util
 from database import get_router_info
 import os
 
-RABBITMQ_LOCATION=os.environ.get("RABBITMQ_LOCATION")
+RABBITMQ_LOCATION = os.environ.get("RABBITMQ_LOCATION")
+
 
 def scheduler():
     """Send router info to RabbitMQ"""

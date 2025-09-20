@@ -8,6 +8,9 @@ from workload import show_interface
 
 RABBITMQ_USERNAME = os.environ.get("RABBITMQ_DEFAULT_USER")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_DEFAULT_PASS")
+RABBITMQ_LOCATION = os.environ.get("RABBITMQ_LOCATION")
+
+RABBIT_URI = f"amqp://{RABBITMQ_USERNAME}:{RABBITMQ_PASSWORD}@{RABBITMQ_LOCATION}:5672/"
 
 CREDENTIALS = pika.PlainCredentials(RABBITMQ_USERNAME, RABBITMQ_PASSWORD)
 
@@ -47,7 +50,7 @@ if __name__ == "__main__":
     for attempt in range(10):
         try:
             print(f"Connecting to RabbitMQ (try {attempt})...")
-            consume("rabbitmq")
+            consume(RABBIT_URI)
             break
         except Exception as e:
             print(f"Failed: {e}")
