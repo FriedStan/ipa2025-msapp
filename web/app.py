@@ -8,8 +8,11 @@ from bson import ObjectId
 
 APP = Flask(__name__)
 
+MONGO_USER = os.environ.get("MONGO_INITDB_ROOT_USERNAME")
+MONGO_PASSWORD = os.environ.get("MONGO_INITDB_ROOT_PASSWORD")
+MONGO_LOCATION = os.environ.get("MONGO_LOCATION")
 
-MONGO_URI = os.environ.get("MONGO_URI")
+MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_LOCATION}:27017/"
 DB_NAME = os.environ.get("DB_NAME")
 
 CLIENT = MongoClient(MONGO_URI)
