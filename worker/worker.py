@@ -8,7 +8,7 @@ from workload import show_interface
 
 RABBITMQ_USERNAME = os.environ.get("RABBITMQ_DEFAULT_USER")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_DEFAULT_PASS")
-RABBITMQ_LOCATION = os.environ.get("RABBITMQ_LOCATION")
+RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST")
 
 RABBIT_URI = RABBITMQ_LOCATION = os.environ.get("RABBIT_URI")
 
