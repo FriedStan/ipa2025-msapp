@@ -14,6 +14,7 @@ def scheduler():
     INTERVAL = 10.0
     next_run = time.monotonic()
     count = 0
+    print("Called")
     while True:
         now = time.time()
         now_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(now))
