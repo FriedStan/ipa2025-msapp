@@ -6,7 +6,7 @@ from bson import json_util
 from database import get_router_info
 import os
 
-RABBIT_URI = os.environ.get("RABBIT_URI")
+RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST")
 
 
 def scheduler():
@@ -24,7 +24,7 @@ def scheduler():
         try:
             for data in get_router_info():
                 body_bytes = json_util.dumps(data).encode("utf-8")
-                produce(RABBIT_URI, body_bytes)
+                produce(RABBITMQ_HOST, body_bytes)
         except Exception as e:
             print(e)
             time.sleep(3)

@@ -50,7 +50,7 @@ if __name__ == "__main__":
     for attempt in range(10):
         try:
             print(f"Connecting to RabbitMQ (try {attempt})...")
-            consume(RABBIT_URI)
+            consume(RABBITMQ_HOST)
             break
         except Exception as e:
             print(f"Failed: {e}")
