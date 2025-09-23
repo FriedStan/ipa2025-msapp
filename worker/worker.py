@@ -4,7 +4,7 @@ import time
 import json
 from workload import show_interface
 
-# from database import insert_interface_status
+from database import insert_interface_status
 
 RABBITMQ_USERNAME = os.environ.get("RABBITMQ_DEFAULT_USER")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_DEFAULT_PASS")
@@ -25,9 +25,9 @@ def callback(ch, method, properties, body):
     print(f"Received job for router {router_ip}")
     print(json.dumps(interfaces_data, indent=2))
 
-    # insert_interface_status(
-    #     {"router_ip": router_ip, "timestamp": "", "interfaces": interfaces_data}
-    # )
+    insert_interface_status(
+        {"router_ip": router_ip, "timestamp": "", "interfaces": interfaces_data}
+    )
 
     time.sleep(body.count(b"."))
     ch.basic_ack(delivery_tag=method.delivery_tag)
