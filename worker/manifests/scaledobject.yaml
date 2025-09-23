@@ -9,7 +9,7 @@ spec:
   pollingInterval: 15
   cooldownPeriod: 120
   minReplicaCount: 1
-  maxReplicaCount: 10
+  maxReplicaCount: 5
   triggers:
     - type: rabbitmq
       metadata:
